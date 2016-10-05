@@ -13,8 +13,7 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
-</head>
+    </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
@@ -55,8 +54,8 @@
                                <RoleGroups>        
                                <asp:RoleGroup Roles="Administrator">   
                                    <ContentTemplate>  
-                                        <li><a>Manage Rooms</a></li>
-                                        <li><a>Statistics</a></li>                                      
+                                        <li><a href="/Administrator/ManageRooms.aspx">Manage Rooms</a></li>
+                                        <li><a href="/Administrator/statistics.aspx">Statistics</a></li>                                      
                                      </ContentTemplate>
                                 </asp:RoleGroup>
                                 <asp:RoleGroup Roles="Customer">   

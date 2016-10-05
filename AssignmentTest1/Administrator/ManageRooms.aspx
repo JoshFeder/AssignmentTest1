@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageRooms.aspx.cs" Inherits="AssignmentTest1.Administrator.ManageRooms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ListView ID="lstViewManageRooms" runat="server" InsertItemPosition="LastItem" DataKeyNames="rid" DataSourceID="sqlRoomsData">
+    <asp:ListView ID="lstViewManageRooms" runat="server" InsertItemPosition="LastItem" DataKeyNames="rid" DataSourceID="sqlRoomsData" >
+
         <AlternatingItemTemplate>
-            <tr style="">
+            <tr>
                 <td>
                     <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
                     <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
@@ -25,27 +26,44 @@
             </tr>
         </AlternatingItemTemplate>
         <EditItemTemplate>
-            <tr style="">
+            <tr>
                 <td>
                     <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
                     <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
                 </td>
                 <td>
-                    <asp:Label ID="ridLabel1" runat="server" Text='<%# Eval("rid") %>' />
+                    <asp:Label ID="ridLabel1" runat="server" Text='<%# Eval("rid") %>'  CssClass="btn btn-primary btn-block" />
                 </td>
                 <td>
-                    <asp:TextBox ID="levelTextBox" runat="server" Text='<%# Bind("level") %>' />
+                    <asp:DropDownList ID="drpDwnListLevel" runat="server"  SelectedValue='<%# Bind("level")%>' CssClass="btn btn-primary btn-block" >
+                       <asp:ListItem Selected="true">G</asp:ListItem>
+                         <asp:ListItem>1</asp:ListItem>
+                         <asp:ListItem>2</asp:ListItem>
+                         <asp:ListItem>3</asp:ListItem>
+                    </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:TextBox ID="bedsTextBox" runat="server" Text='<%# Bind("beds") %>' />
-                </td>
+                    <asp:DropDownList ID="DropDownList1" runat="server"  SelectedValue='<%# Bind("beds")%>' CssClass="btn btn-primary btn-block" >
+                    
+                         <asp:ListItem>1</asp:ListItem>
+                         <asp:ListItem>2</asp:ListItem>
+                         <asp:ListItem>3</asp:ListItem>
+                    </asp:DropDownList> </td>
                 <td>
-                    <asp:TextBox ID="orientationTextBox" runat="server" Text='<%# Bind("orientation") %>' />
-                </td>
+<asp:DropDownList ID="DropDownList2" runat="server"  SelectedValue='<%# Bind("orientation")%>' CssClass="btn btn-primary btn-block" >
+                    
+                         <asp:ListItem>N</asp:ListItem>
+                         <asp:ListItem>E</asp:ListItem>
+                         <asp:ListItem>S</asp:ListItem>
+                         <asp:ListItem>W</asp:ListItem>
+                    </asp:DropDownList> </td></td>
                 <td>
-                    <asp:TextBox ID="priceTextBox" runat="server" Text='<%# Bind("price") %>' />
+                    <asp:TextBox ID="priceTextBox" runat="server" Text='<%# Bind("price") %>'  CssClass="btn btn-primary btn-block" />
+                    <asp:RequiredFieldValidator controlToValidate="priceTextBox" ID="reqFieldEditPriceTxtBox" runat="server" ErrorMessage="Please enter the price of the room." ValidationGroup="editTemplate"></asp:RequiredFieldValidator>
+                    <asp:RangeValidator  controlToValidate="priceTextBox" ID="RangeValidator2" runat="server" ErrorMessage="RangeValidator" Type="Currency" MinimumValue="100" MaximumValue="1000"> </asp:RangeValidator>
                 </td>
             </tr>
+            
         </EditItemTemplate>
         <EmptyDataTemplate>
             <table runat="server" style="">
@@ -62,7 +80,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="ridTextBox" runat="server" Text='<%# Bind("rid") %>' />
-                </td>
+                      </td>
                 <td>
                     <asp:TextBox ID="levelTextBox" runat="server" Text='<%# Bind("level") %>' />
                 </td>
@@ -104,7 +122,7 @@
             <table runat="server">
                 <tr runat="server">
                     <td runat="server">
-                        <table id="itemPlaceholderContainer" runat="server" border="0" style="">
+                        <table id="itemPlaceholderContainer" runat="server" border="0" style="" class="table">
                             <tr runat="server" style="">
                                 <th runat="server"></th>
                                 <th runat="server">rid</th>
